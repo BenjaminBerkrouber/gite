@@ -1,0 +1,453 @@
+/*la palette :*/
+/*#EEE2DF*/
+/*#EED7C5*/
+/*#C89F9C*/
+/*#CA7C5C*/
+/*#B36A5E*/
+
+
+
+
+.carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
+.carousel-indicators {
+    margin-bottom: 100px;
+}
+
+/*--------------------------------------------------------------*/
+
+.reservation-container {
+    position: relative;
+    z-index: 1;
+}
+
+.reservation-form {
+    position: absolute;
+    z-index: 100;
+    width: 1200px;
+    padding: 20px;
+    margin-top: -80px;
+    background-color: #EED7C5;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reservation-form .form-row {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reservation-form .form-control {
+    margin-bottom: 30px;
+}
+
+.reservation-form .btn-reserve {
+    font-size: 18px;
+    background-color: #CA7C5C;
+    border-color: #CA7C5C;
+    color: white;
+}
+
+.reservation-form label {
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+    color: #C89F9C;
+}
+
+/*--------------------------------------------------------------*/
+
+.owner-presentation {
+    background-color: #EEE2DF;
+    position: relative;
+    height: fit-content;
+    padding: 100px 0px 75px 0px;
+}
+
+.owner-presentation .container {
+    display: flex;
+    justify-content: center;
+}
+
+.owner-presentation .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.owner-presentation .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.owner-presentation .svg-container {
+    width: 500px;
+    height: 500px;
+}
+
+.owner-presentation svg {
+    width: 100%;
+    height: 100%;
+}
+
+.owner-presentation .presentation-text {
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    border-radius: 50px 15px 50px 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+/*--------------------------------------------------------------*/
+
+/*Séparator */
+
+.separator-section {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.separator-image {
+    position: fixed; /* Modifier cette ligne */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Modifier cette ligne */
+    z-index: -1;
+}
+
+.separator-image img {
+    width: 100%;
+    height: 100%; /* Modifier cette ligne */
+    object-fit: cover;
+}
+
+/*--------------------------------------------------------------*/
+
+/* CSS for Gite Section */
+
+.gite-section {
+    background-color: #EED7C5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 80px 100px;
+}
+
+.gite-section h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #B36A5E;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.gite-section p.gite-describ{
+    font-size: 18px;
+    color: #CA7C5C;
+    line-height: 1.5; /* pour l'espacement des lignes, à ajuster si nécessaire */
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px; /* pour l'espacement entre les paragraphes, à ajuster si nécessaire */
+    text-align: justify;
+}
+
+.gites-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.gite {
+    background-color: #EEE2DF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gite h3 {
+    text-align: center;
+    margin: 10px 0px;
+    color: #CA7C5C;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+.gite .gite-image {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.gite .gite-image .carousel-inner {
+    height: 100%;
+}
+
+.gite .gite-image .carousel-item {
+    height: 100%;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.gite .gite-image .carousel-item img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
+
+.gite .gite-image .arrow-icon {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #EEE2DF;
+    font-size: 30px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+    animation: arrow-animation 2s infinite ease-in-out;
+}
+
+.gite:hover .gite-image .arrow-icon {
+    opacity: 0;
+}
+
+.gite .gite-image .hover-text {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    transition: opacity 0.3s ease;
+    background-color: black;
+    opacity: 0.7;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.gite:hover .gite-image .hover-text {
+    opacity: 0;
+}
+
+.gite .gite-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #EEE2DF;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gite:hover .gite-info {
+    transform: translateY(0);
+}
+
+.gite .gite-info h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.gite .gite-info p {
+    margin-bottom: 10px;
+}
+
+.gite .gite-info a.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #CA7C5C;
+    color: #EEE2DF;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.gite .gite-info a.btn:hover {
+    background-color: #B36A5E;
+}
+
+.gite .carousel-indicators {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.gite .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.gite .carousel-indicators li.active {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Animation for arrow icon */
+@keyframes arrow-animation {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+    100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .gite {
+        width: 100%;
+    }
+}
+
+
+/*--------------------------------------------------------------*/
+
+
+.testimonial-section {
+    background-color: #EED7C5;
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.testimonial-carousel {
+    display: flex;
+    white-space: nowrap;
+}
+
+.testimonial-item {
+    flex: 0 0 auto;
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
+    padding: 20px;
+    background-color: #EEE2DF;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal; /* Ajouté pour permettre aux lignes de se casser naturellement */
+}
+
+
+.testimonial-author {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #CA7C5C; /* Changement de couleur du texte de l'auteur */
+}
+
+/*--------------------------------------------------------------*/
+
+#content-section {
+    display: flex;
+    height: 500px;
+    justify-content: space-between;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+#map-section{
+    width: 70%;
+}
+
+#contact-section{
+    width: 30%;
+    background-color: #EEE2DF;
+    box-sizing: border-box;
+}
+
+#contact-title {
+    background-color: #B36A5E;
+    color: white;
+    padding: 10px;
+    padding-left: 1em;
+    font-size: 50px;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+}
+
+#name-fields {
+    display: flex;
+    justify-content: space-between;
+}
+
+#name-fields input[type="text"] {
+    width: 48%; /* change this value to adjust the spacing between the two fields */
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    margin-bottom: 1em;
+    padding: 0.8em;
+    padding-left: 1.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #EED7C5;
+}
+
+#contact-form textarea {
+    height: 150px;
+    resize: none;
+}
+
+#contact-form input[type="submit"] {
+    background-color: #B36A5E;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#contact-form input[type="submit"]:hover {
+    background-color: #C89F9C;
+}
+
+
+/*--------------------------------------------------------------*/
