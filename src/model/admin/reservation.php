@@ -70,6 +70,8 @@ include_once('view/admin/include/header.view.php');
 </head>
 <body>
 
+<br>
+<br>
 <div id='calendar'></div>
 
 </body>
