@@ -9,46 +9,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-    <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/view/admin/css/style_admin_user.css">
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #EEE2DF;
-        }
-
-        .container {
-            background-color: #EED7C5;
-            padding: 50px;
-            border-radius: 15px;
-            margin-top: 50px;
-            width: 60%;
-        }
-
-        .btn-primary {
-            background-color: #B36A5E;
-            border-color: #B36A5E;
-        }
-
-        .btn-primary:hover {
-            background-color: #CA7C5C;
-            border-color: #CA7C5C;
-        }
-
-        h1 {
-            color: #CA7C5C;
-            margin-bottom: 30px;
-        }
-
-        label {
-            color: #C89F9C;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-<div class="container">
+<div class="container" id="update">
     <h1>Update User</h1>
 
     <!-- Formulaire pour mettre à jour un utilisateur -->
@@ -87,14 +55,14 @@
             </div>
         </div>
         <input type="hidden" name="id" value="<?php echo $user['id_user']; ?>">
-        <div class="d-flex justify-content-end mt-4">
+        <?php if (!empty($error)): ?>
+            <div class="alert alert-danger mt-4" id="error"><?php echo $error; ?></div>
+        <?php endif; ?>
+        <div class="d-flex justify-content-center mt-4">
             <button type="submit" class="btn btn-primary">Update User</button>
         </div>
     </form>
 </div>
-
-<!-- Scripts JavaScript Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

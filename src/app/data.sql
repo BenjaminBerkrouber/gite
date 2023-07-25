@@ -17,36 +17,52 @@ VALUES ('Gîte de la Vallée', 5, 'Un charmant gîte situé au cœur de la vall�
 INSERT INTO Messages (id_message, message, date_message, id_user_envoie, id_user_recepteur) VALUES (1, 'Bonjour, comment puis-je vous aider?', '2023-06-01 10:00:00', 1, 1);
 
 INSERT INTO PhotosGite (id_gite, nom, chemin, utilite) VALUES
-(1, 'illustration.jpg', 'public/images/gites/gite-1/illustrator.jpg', 'illustration'),
-(1, 'slide-gite-1-0.jpg', 'public/images/gites/gite-1/slide-gite-1-0.jpg', 'slider'),
-(1, 'slide-gite-1-1.jpg', 'public/images/gites/gite-1/slide-gite-1-1.jpg', 'slider'),
-(1, 'slide-gite-1-2.jpg', 'public/images/gites/gite-1/slide-gite-1-2.jpg', 'slider'),
+(1, 'illustration.jpg', '/public/images/gites/gite-1/illustrator.jpg', 'illustration'),
+(1, 'slide-gite-1-0.jpg', '/public/images/gites/gite-1/slide-gite-1-0.jpg', 'slider'),
+(1, 'slide-gite-1-1.jpg', '/public/images/gites/gite-1/slide-gite-1-1.jpg', 'slider'),
+(1, 'slide-gite-1-2.jpg', '/public/images/gites/gite-1/slide-gite-1-2.jpg', 'slider'),
 
-(2, 'illustration.jpg', 'public/images/gites/gite-2/illustrator.jpg', 'illustration'),
-(2, 'slide_gite-2-0.jpg', 'public/images/gites/gite-2/slide-gite-2-0.jpg', 'slider'),
-(2, 'slide_gite-2-1.jpg', 'public/images/gites/gite-1/slide-gite-2-1.jpg', 'slider'),
-(2, 'slide-gite-2-2.jpg', 'public/images/gites/gite-1/slide-gite-2-2.jpg', 'slider');
-
+(2, 'illustration.jpg', '/public/images/gites/gite-2/illustrator.jpg', 'illustration'),
+(2, 'slide_gite-2-0.jpg', '/public/images/gites/gite-2/slide-gite-2-0.jpg', 'slider'),
+(2, 'slide_gite-2-1.jpg', '/public/images/gites/gite-1/slide-gite-2-1.jpg', 'slider'),
+(2, 'slide-gite-2-2.jpg', '/public/images/gites/gite-1/slide-gite-2-2.jpg', 'slider');
 
 -- Insertions supplémentaires dans la table Reservations
-INSERT INTO reservations (id_user, id_gite, date_debut, date_fin, nb_personnes)
-VALUES (1, 2, '2023-06-10', '2023-06-20', 3);
+INSERT INTO reservations (id_user, id_gite, date_debut, date_fin, nb_personnes, commentaire)
+VALUES (1, 2, '2023-06-10 10:00:00', '2023-06-20 18:00:00', 3, 'Rien'),
+       (2, 1, '2023-06-15 10:00:00', '2023-06-25 18:00:00', 2, 'Hebergement long ?'),
+       (1, 2, '2023-06-26 10:00:00', '2023-07-01 18:00:00', 4, 'Voiture + 2 enfant'),
+       (1, 2, '2023-07-26 10:00:00', '2023-07-30 18:00:00', 4, 'chien');
 
-INSERT INTO reservations (id_user, id_gite, date_debut, date_fin, nb_personnes)
-VALUES (2, 1, '2023-06-15', '2023-06-25', 2);
-
-INSERT INTO reservations (id_user, id_gite, date_debut, date_fin, nb_personnes)
-VALUES (1, 2, '2023-06-26', '2023-07-01', 4);
-
-INSERT INTO reservations (id_user, id_gite, date_debut, date_fin, nb_personnes)
-VALUES (1, 2, '2023-07-26', '2023-07-30', 4);
 
 INSERT INTO owner(name, password) VALUES ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2');
 
-TRUNCATE TABLE PhotosGite;
+# TRUNCATE TABLE PhotosGite;
 SELECT * FROM reservations WHERE date_debut >= '2023-06-01' AND date_fin <= '2023-06-30';
 SELECT * FROM reservations;
 
+SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, users.numero as numero
+            FROM reservations
+                INNER JOIN users ON reservations.id_user = users.id_user
+                INNER JOIN gites ON reservations.id_gite = gites.id_gite;
 
-SELECT * FROM PhotosGite;
-SELECT * FROM gites;
+SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, users.numero as numero,
+                   DATE_FORMAT(reservations.date_debut, '%Y-%m-%d') as date_debut,
+                   DATE_FORMAT(reservations.date_fin, '%Y-%m-%d') as date_fin
+            FROM reservations
+                INNER JOIN users ON reservations.id_user = users.id_user
+                INNER JOIN gites ON reservations.id_gite = gites.id_gite;
+
+SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, users.numero as numero
+            FROM reservations
+                INNER JOIN users ON reservations.id_user = users.id_user
+                INNER JOIN gites ON reservations.id_gite = gites.id_gite
+
+SELECT * FROM lock_time;
+
+SELECT *
+FROM reservations
+WHERE
+    ('2023-07-26 00:00:00' BETWEEN date_debut AND date_fin) OR
+    ('2023-07-26 23:59:59' BETWEEN date_debut AND date_fin) OR
+    (date_debut BETWEEN '2023-07-26 00:00:00' AND '2023-26-19 23:59:59');

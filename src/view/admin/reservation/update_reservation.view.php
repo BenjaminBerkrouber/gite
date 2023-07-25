@@ -18,6 +18,11 @@
             color: #CA7C5C;
             margin-bottom: 2rem;
         }
+
+        h4{
+            color: #CA7C5C;
+        }
+
         .container {
             background-color: #EED7C5;
             padding: 2rem;
@@ -78,6 +83,17 @@
             background-color: #e2e6ea;  /* Gris plus foncé lorsqu'il est survolé */
             cursor: not-allowed;  /* Change le curseur en une croix */
         }
+
+        .btn-primary {
+            background-color: #B36A5E;
+            border-color: #B36A5E;
+        }
+
+        .btn-primary:hover {
+            background-color: #CA7C5C;
+            border-color: #CA7C5C;
+        }
+
     </style>
 </head>
 <body>
@@ -110,6 +126,14 @@
                         <label for="prenom">Prénom du Client</label>
                         <p class="styled-info"><?= $reservation['prenom'] ?></p>
                     </div>
+                    <div class="col-6">
+                        <label for="num">Numéro Client</label>
+                        <p class="styled-info"><?= $reservation['numero'] ?></p>
+                    </div>
+                    <div class="col-6">
+                        <label for="num">Mail Client</label>
+                        <p class="styled-info"><?= $reservation['mail'] ?></p>
+                    </div>
                 </div>
                 <hr> <!-- Line separator -->
                 <div class="form-row mt-3">
@@ -126,9 +150,15 @@
                     <label for="nb_personnes">Nombre de personnes</label>
                     <input type="number" class="form-control" id="nb_personnes" name="nb_personnes" value="<?= $reservation['nb_personnes'] ?>" required>
                 </div>
+                <div class="form-group mt-3">
+                    <label for="commentaire">Commentaire</label>
+                    <input type="text" class="form-control" id="commentaire" name="commentaire" value="<?= $reservation['commentaire'] ?>" required>
+                </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
+        <div class="d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
+        </div>
     </form>
 </div>
 <!-- JS Bootstrap -->

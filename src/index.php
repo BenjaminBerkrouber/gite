@@ -22,7 +22,6 @@ $pageActive = "acceuil";
 
 </head>
 <body>
-
 <?php include('view/include/header.view.php');?>
 
 

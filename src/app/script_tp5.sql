@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS reservations, Messages, PhotosGite, users, role, gites, owner;
+DROP TABLE IF EXISTS reservations, Messages, PhotosGite, users, role, gites, owner, lock_time;
 
 CREATE TABLE role(
    id_role INT PRIMARY KEY AUTO_INCREMENT,
@@ -33,7 +33,6 @@ CREATE TABLE PhotosGite (
    FOREIGN KEY(id_gite) REFERENCES gites(id_gite)
 );
 
-
 CREATE TABLE Messages(
    id_message INT PRIMARY KEY AUTO_INCREMENT,
    message TEXT,
@@ -48,12 +47,19 @@ CREATE TABLE reservations(
    id_reservation INT PRIMARY KEY AUTO_INCREMENT,
    id_user INT,
    id_gite INT,
-   date_debut DATE,
-   date_fin DATE,
+   commentaire TEXT NULL,
+   date_debut DATETIME,
+   date_fin DATETIME,
    nb_personnes INT,
    FOREIGN KEY(id_user) REFERENCES users(id_user),
    FOREIGN KEY(id_gite) REFERENCES gites(id_gite),
    UNIQUE (id_gite, date_debut, date_fin)
+);
+
+CREATE TABLE lock_time(
+    date_debut DATETIME,
+    date_fin DATETIME,
+    primary key (date_debut,date_fin)
 );
 
 CREATE TABLE owner(
@@ -62,13 +68,11 @@ CREATE TABLE owner(
     password text
 );
 
-SELECT * FROM users;
-SELECT * FROM PhotosGite;
-SELECT * FROM gites;
+SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, PhotosGite.nom as nomPhoto, PhotosGite.chemin, users.numero as numero, users.mail as mail
+FROM reservations
+    INNER JOIN users ON reservations.id_user = users.id_user
+    INNER JOIN gites ON reservations.id_gite = gites.id_gite
+    LEFT JOIN PhotosGite ON gites.id_gite = PhotosGite.id_gite
+WHERE reservations.id_reservation = 1 AND PhotosGite.utilite = 'illustration';
 
-SELECT * FROM PhotosGite WHERE id_gite = 3;
-
-    SELECT *, pg.chemin as path
-    FROM gites g
-        LEFT JOIN PhotosGite pg ON g.id_gite = pg.id_gite
-    GROUP BY g.id_gite
+DELETE FROM lock_time WHERE date_debut = '2023-07-02 00:00:00' AND date_fin = '2023-07-02 23:59:59';

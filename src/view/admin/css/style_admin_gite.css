@@ -1,0 +1,175 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #EEE2DF;
+}
+
+h1, h2 {
+    color: #CA7C5C;
+}
+
+.btn-primary {
+    background-color: #B36A5E;
+    border-color: #B36A5E;
+}
+
+.btn-primary:hover {
+    background-color: #C89F9C;
+    border-color: #C89F9C;
+}
+
+.table {
+    background-color: #EED7C5;
+}
+
+.table thead {
+    background-color: #B36A5E;
+    color: #EEE2DF;
+}
+
+.table tbody tr {
+    background-color: #EED7C5;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #C89F9C;
+}
+
+#create,#update {
+    background-color: #EED7C5;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #CA7C5C;
+    margin-bottom: 30px;
+}
+
+label {
+    color: #C89F9C;
+}
+
+#create,#update {
+    background-color: #EED7C5;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.image-upload {
+    position: relative;
+    cursor: pointer;
+}
+
+.image-upload .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-upload:hover .overlay {
+    opacity: 1;
+}
+
+.slider-image-preview {
+    width: 30%;
+    margin-right: 1em;
+}
+
+#preview {
+    max-height: 300px;
+}
+
+#sliderImages {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.image-upload-slider {
+    margin: 20px 20px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.image-upload-slider span {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.image-upload-slider .delete-icon {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin: 5px;
+}
+
+.image-upload-slider .delete-icon i {
+    font-size: 20px;
+    color: red;
+}
+
+.image-upload-slider:hover .delete-icon {
+    opacity: 1;
+}
+
+.slider-images-container .image-upload-slider {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.slider-images-container .image-upload-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-images-container .image-upload-slider input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.btn-create-gite {
+    width: 100%;
+    background-color: #CA7C5C;
+    color: white;
+    border-color: #CA7C5C;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-create-gite:hover {
+    background-color: #B36A5E;
+    border-color: #B36A5E;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+

@@ -1,10 +1,8 @@
 <?php
 
-var_dump($_POST);
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification des données soumises
-    if (isset($_POST['id_reservation']) && isset($_POST['id_user']) && isset($_POST['id_gite']) && isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personnes'])) {
+    if (isset($_POST['id_reservation']) && isset($_POST['id_user']) && isset($_POST['id_gite']) && isset($_POST['date_debut']) && isset($_POST['date_fin']) && isset($_POST['nb_personnes']) && isset($_POST['commentaire'])) {
 
         $id_user = htmlspecialchars($_POST['id_user']);
         $id_gite = htmlspecialchars($_POST['id_gite']);
@@ -12,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $date_fin = htmlspecialchars($_POST['date_fin']);
         $nb_personnes = htmlspecialchars($_POST['nb_personnes']);
         $id_reservation = htmlspecialchars($_POST['id_reservation']);
+        $commentaire = htmlspecialchars($_POST['commentaire']);
 
         $reservation = get_reservation_by_id($id_reservation);
 
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        update_reservation($id_reservation, $id_user, $id_gite, $date_debut, $date_fin, $nb_personnes);
+        update_reservation($id_reservation, $id_user, $id_gite, $date_debut, $date_fin, $nb_personnes, $commentaire);
         echo "oui";
         header("Location: /admin/reservation");
         exit();
