@@ -1,0 +1,68 @@
+#calendar {
+    max-width: 80%;
+    margin: 0 auto;
+    height: 750px;
+}
+
+#calendar table td {
+    border: 0.5px solid rgba(0, 0, 0, 0.4);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #EEE2DF;
+}
+h1, h2 {
+    color: #CA7C5C;
+    text-align: left;
+}
+.btn-primary {
+    background-color: #B36A5E;
+    border-color: #B36A5E;
+}
+.btn-primary:hover {
+    background-color: #C89F9C;
+    border-color: #C89F9C;
+}
+
+.fc-event-time {
+    display: none;
+}
+
+.fc-daygrid-dot-event .fc-event-title{
+    color: red;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+.container {
+    background-color: #EED7C5;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 50px;
+    width: 50%;
+}
+
+h1 {
+    color: #CA7C5C;
+}
+
+label {
+    color: #C89F9C;
+}
+
+#userResults {
+    display: none;
+}
+
+#userResults button {
+    margin: 0.2rem;
+    background-color: #B36A5E;
+    border-color: #B36A5E;
+}
+
+#userResults button:hover {
+    background-color: #CA7C5C;
+    border-color: #CA7C5C;
+}

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS reservations, Messages, PhotosGite, users, role, gites, owner, lock_time;
+DROP TABLE IF EXISTS reservations, Messages, PhotosGite, users, role, gites, owner, lock_time, travel_time;
 
 CREATE TABLE role(
    id_role INT PRIMARY KEY AUTO_INCREMENT,
@@ -59,7 +59,23 @@ CREATE TABLE reservations(
 CREATE TABLE lock_time(
     date_debut DATETIME,
     date_fin DATETIME,
-    primary key (date_debut,date_fin)
+    primary key (date_fin, date_debut)
+);
+
+CREATE TABLE travel_time(
+    id_lock INT PRIMARY KEY AUTO_INCREMENT,
+    date_debut DATETIME,
+    date_fin DATETIME,
+    id_gite int,
+    FOREIGN KEY(id_gite) REFERENCES gites(id_gite)
+);
+
+CREATE TABLE cleaning_time(
+    id_cleaning INT PRIMARY KEY AUTO_INCREMENT,
+    date_debut DATETIME,
+    date_fin DATETIME,
+    id_gite INT,
+    FOREIGN KEY(id_gite) REFERENCES gites(id_gite)
 );
 
 CREATE TABLE owner(
@@ -67,12 +83,3 @@ CREATE TABLE owner(
     name varchar(255),
     password text
 );
-
-SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, PhotosGite.nom as nomPhoto, PhotosGite.chemin, users.numero as numero, users.mail as mail
-FROM reservations
-    INNER JOIN users ON reservations.id_user = users.id_user
-    INNER JOIN gites ON reservations.id_gite = gites.id_gite
-    LEFT JOIN PhotosGite ON gites.id_gite = PhotosGite.id_gite
-WHERE reservations.id_reservation = 1 AND PhotosGite.utilite = 'illustration';
-
-DELETE FROM lock_time WHERE date_debut = '2023-07-02 00:00:00' AND date_fin = '2023-07-02 23:59:59';

@@ -61,7 +61,6 @@ function HomeController(){
 function adminUserManagement()
 {
     session_start();
-
     if (!isset($_SESSION['username'])) {
         header('Location: /admin/login');
         exit();
@@ -69,6 +68,7 @@ function adminUserManagement()
 
     require('model/admin/dao_files/dao_admin_user.php');
     $users = get_all_users();
+    include_once('view/admin/include/header.view.php');
     require('model/admin/user.php');
 }
 
@@ -102,6 +102,7 @@ function deleteUser()
 function adminGiteManagement(){
     require('model/admin/dao_files/dao_admin_gite.php');
     $gites = get_all_gites();
+    include_once('view/admin/include/header.view.php');
     require('model/admin/gite.php');
 }
 
@@ -123,6 +124,17 @@ function deleteGite(){
 
 function adminReservationManagement(){
     require('model/admin/dao_files/dao_admin_reservation.php');
+    require('model/admin/dao_files/dao_admin_gite.php');
+
+    $reservations = get_all_reservations();
+    $lock_time = get_all_lock_time();
+    $gites = get_all_gites();
+    $colors = [
+        '1' => "#B36A5E",
+        '2' => "#C89F9C"
+    ];
+
+    include_once('view/admin/include/header.view.php');
     require('model/admin/reservation.php');
 }
 
@@ -138,6 +150,7 @@ function deleteReservation(){
 }
 
 function lockReservation(){
+    exit();
     require('model/admin/dao_files/dao_admin_reservation.php');
     require('controller/admin/reservation/lock_day_reservation.php');
 }

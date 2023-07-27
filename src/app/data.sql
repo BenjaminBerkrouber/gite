@@ -36,33 +36,3 @@ VALUES (1, 2, '2023-06-10 10:00:00', '2023-06-20 18:00:00', 3, 'Rien'),
 
 
 INSERT INTO owner(name, password) VALUES ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2');
-
-# TRUNCATE TABLE PhotosGite;
-SELECT * FROM reservations WHERE date_debut >= '2023-06-01' AND date_fin <= '2023-06-30';
-SELECT * FROM reservations;
-
-SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, users.numero as numero
-            FROM reservations
-                INNER JOIN users ON reservations.id_user = users.id_user
-                INNER JOIN gites ON reservations.id_gite = gites.id_gite;
-
-SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, users.numero as numero,
-                   DATE_FORMAT(reservations.date_debut, '%Y-%m-%d') as date_debut,
-                   DATE_FORMAT(reservations.date_fin, '%Y-%m-%d') as date_fin
-            FROM reservations
-                INNER JOIN users ON reservations.id_user = users.id_user
-                INNER JOIN gites ON reservations.id_gite = gites.id_gite;
-
-SELECT reservations.*, users.nom, users.prenom, gites.nom as nomGite, users.numero as numero
-            FROM reservations
-                INNER JOIN users ON reservations.id_user = users.id_user
-                INNER JOIN gites ON reservations.id_gite = gites.id_gite
-
-SELECT * FROM lock_time;
-
-SELECT *
-FROM reservations
-WHERE
-    ('2023-07-26 00:00:00' BETWEEN date_debut AND date_fin) OR
-    ('2023-07-26 23:59:59' BETWEEN date_debut AND date_fin) OR
-    (date_debut BETWEEN '2023-07-26 00:00:00' AND '2023-26-19 23:59:59');

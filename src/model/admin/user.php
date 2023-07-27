@@ -1,7 +1,3 @@
-<?php
-    include_once('view/admin/include/header.view.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
