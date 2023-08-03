@@ -2,6 +2,7 @@
 $gites = get_all_gites();
 $users = get_all_users();
 $reservations = get_all_reservations();
+$lock_time = get_all_lock_time();
 
 $error = "";
 
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if(empty($error)){
             add_reservation($id_user,$id_gite,$date_debut,$date_fin,$nb_personnes,$commentaire);
-            add_lock_reservation($date_fin);
+            add_cleaning_time($date_fin, $id_gite);
             header('Location: /admin/reservation');
         }
 

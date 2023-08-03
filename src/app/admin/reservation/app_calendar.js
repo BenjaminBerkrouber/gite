@@ -1,27 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     var isBlockingDay = false;
     var blockDayBtn = document.getElementById('block-day-btn');
-    var clickedDate;
 
     lockTime = lockTime.map(function(lockRange) {
-        var color, title;
-        switch (lockRange.value) {
-            case "Menage":
-                color = 'green';
-                title = 'MÉNAGE';
-                break;
-            default:
-                color = 'red';
-                title = 'BLOQUER';
-                break;
-        }
-
         return {
             groupId: 'blocked',
-            title: title,
+            title: 'BLOQUER',
             start: new Date(lockRange.date_debut.replace(' ', 'T')),
             end: new Date(lockRange.date_fin.replace(' ', 'T')),
-            backgroundColor: color,
+            backgroundColor: 'red',
+            textColor: 'white'
+        };
+    });
+
+    cleaningTime = cleaningTime.map(function(cleanRange) {
+        return {
+            groupId: 'cleaning',
+            title: 'Ménage - ' + cleanRange.nomGite,
+            start: new Date(cleanRange.date_debut.replace(' ', 'T')),
+            end: new Date(cleanRange.date_fin.replace(' ', 'T')),
+            backgroundColor: 'green',
             textColor: 'white'
         };
     });
@@ -40,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         events: [
             ...lockTime,
+            ...cleaningTime,
             ...reservations.map(function(reservation) {
                 return {
                     id: reservation.id_reservation,
@@ -51,58 +50,21 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         ],
         eventClick: function(info) {
-            if (info.event.groupId !== 'blocked') {
+            if (info.event.groupId !== 'blocked' && info.event.groupId !== 'cleaning') {
                 window.location.href = '/admin/reservation/update?id=' + info.event.id;
             }
         },
         dateClick: function(info) {
             if(isBlockingDay) {
-                clickedDate = info.dateStr;
-                // Open the modal here
-                $('#myModal').modal('show');
+                const clickedDate = info.dateStr;
+                window.location.href = '/admin/reservation/lock?date=' + clickedDate;
             }
         }
     });
 
     calendar.render();
+});
 
-    var blockForm = document.getElementById('gites-block-form');
-    blockForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var giteIds = Array.from(blockForm.elements).filter(function(element) {
-            return element.checked;
-        }).map(function(element) {
-            return element.value;
-        });
-
-        fetch('/admin/reservation/lock', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                date: clickedDate,
-                giteIds: giteIds
-            })
-        }).then(function(response) {
-            if (response.ok) {
-                return response.json();
-            } else {
-                return Promise.reject('Error:' + response.status);
-            }
-        }).then(function() {
-            // Re-render the calendar with the blocked gîtes.
-            calendar.refetchEvents();
-            $('#myModal').modal('hide');
-        }).catch(function(error) {
-            console.log(error);
-        });
-    });
-
-    // Code to close the modal
-    var closeButton = document.querySelector('.close');
-    closeButton.addEventListener('click', function() {
-        $('#myModal').modal('hide');
-    });
+document.getElementById('block-day-btns').addEventListener('click', function() {
+    this.classList.toggle('active');
 });

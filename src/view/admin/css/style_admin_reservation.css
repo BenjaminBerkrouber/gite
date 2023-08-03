@@ -66,3 +66,55 @@ label {
     background-color: #CA7C5C;
     border-color: #CA7C5C;
 }
+
+
+/* update */
+
+h4{
+    color: #CA7C5C;
+}
+
+p.styled-info {
+    background-color: #e7e8e8;  /* Plus gris que blanc */
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: background-color 0.3s ease;  /* Ajouté pour l'animation de surbrillance */
+}
+
+p.styled-info:hover {
+    background-color: #e2e6ea;  /* Gris plus foncé lorsqu'il est survolé */
+    cursor: not-allowed;  /* Change le curseur en une croix */
+}
+
+.container {
+    background-color: #EED7C5;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.image-upload {
+    position: relative;
+    cursor: pointer;
+}
+.image-upload .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#preview {
+    max-height: 300px; /* Ajustez cette valeur pour changer la hauteur maximale de l'image d'illustration */
+}
+

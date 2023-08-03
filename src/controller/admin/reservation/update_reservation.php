@@ -1,4 +1,8 @@
 <?php
+$gites = get_all_gites();
+$users = get_all_users();
+$reservations = get_all_reservations();
+$lock_time = get_all_lock_time();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification des données soumises
@@ -21,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         update_reservation($id_reservation, $id_user, $id_gite, $date_debut, $date_fin, $nb_personnes, $commentaire);
-        echo "oui";
         header("Location: /admin/reservation");
         exit();
     } else {
@@ -33,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = htmlspecialchars($_GET['id']);
 
         $reservation = get_reservation_by_id($id);
-
         if (!$reservation) {
             echo "Erreur : Réservation introuvable.";
             exit();

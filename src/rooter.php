@@ -128,6 +128,7 @@ function adminReservationManagement(){
 
     $reservations = get_all_reservations();
     $lock_time = get_all_lock_time();
+    $cleaning_time = get_all_cleaning_time();
     $gites = get_all_gites();
     $colors = [
         '1' => "#B36A5E",
@@ -139,9 +140,10 @@ function adminReservationManagement(){
 }
 
 function updateReservation(){
+    require('model/admin/dao_files/dao_admin_user.php');
     require('model/admin/dao_files/dao_admin_reservation.php');
+    require('model/admin/dao_files/dao_admin_gite.php');
     require('controller/admin/reservation/update_reservation.php');
-
 }
 
 function deleteReservation(){
@@ -150,7 +152,6 @@ function deleteReservation(){
 }
 
 function lockReservation(){
-    exit();
     require('model/admin/dao_files/dao_admin_reservation.php');
     require('controller/admin/reservation/lock_day_reservation.php');
 }

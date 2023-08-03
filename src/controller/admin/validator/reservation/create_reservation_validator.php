@@ -43,6 +43,10 @@ if (strtotime($date_fin) - strtotime($date_debut) < 24*60*60) {
     $error = "La réservation doit être d'au moins une journée.";
 }
 
+if(!check_cleaning_time($id_gite, $date_debut, $date_fin)) {
+    $error = "Le gîte est réservé pour le nettoyage pendant cette période. Veuillez choisir un autre créneau.";
+}
+
 ////Vérifier si la réservation n'est pas faite le jour même
 //if (strtotime($date_debut) < strtotime("+1 day")) {
 //    $error = "La réservation ne peut pas être faite pour le jour même.";

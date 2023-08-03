@@ -142,6 +142,23 @@ function add_lock_day_reservation($date_debut, $date_fin)
     $stmt->execute([$date_debut, $date_fin]);
 }
 
+
+/**
+ * Récupère tous les blocages de temps de la base de données.
+ *
+ * @return array Liste de tous les blocages de temps
+ */
+function get_all_cleaning_time(){
+    $db = new DbConnect();
+    $conn = $db->connect();
+
+    $sql = "SELECT ct.*, g.nom as nomGite FROM cleaning_time ct INNER JOIN gites g on ct.id_gite = g.id_gite";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 /**
  * Ajoute un blocage de jour pour une réservation à la base de données.
  *
@@ -152,7 +169,7 @@ function add_lock_day_reservation($date_debut, $date_fin)
  *
  * @param string $date_debut Date de début du blocage
  */
-function add_cleaning_time($date_debut){
+function add_cleaning_time($date_debut, $id_gite){
     $db = new DbConnect();
     $conn = $db->connect();
 
@@ -163,30 +180,9 @@ function add_cleaning_time($date_debut){
     $timestamp += (4 * 3600) - 1200;
     $date_fin = date('Y-m-d H:i:s', $timestamp);
 
-    echo $date_debut." e ".$date_fin;
-    $sql = "INSERT INTO cleaning_time (date_debut, date_fin,value) VALUES (?, ?,?)";
+    $sql = "INSERT INTO cleaning_time (date_debut, date_fin,id_gite) VALUES (?, ?,?)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$date_debut, $date_fin,'menage']);
-}
-
-
-/**
- * Vérifie si une réservation est verrouillée pour les dates spécifiées.
- *
- * @param string $date_debut Date de début de la réservation
- * @param string $date_fin Date de fin de la réservation
- * @return bool True si la réservation est verrouillée, false sinon
- */
-function check_lock_reservation($date_debut, $date_fin){
-    $db = new DbConnect();
-    $conn = $db->connect();
-
-    $stmt = $conn->prepare("SELECT * FROM reservations WHERE (date_debut BETWEEN :date_debut AND :date_fin) OR (date_fin BETWEEN :date_debut AND :date_fin) OR (:date_debut BETWEEN date_debut AND date_fin) OR (:date_fin BETWEEN date_debut AND date_fin)");
-    $stmt->bindParam(":date_debut", $date_debut);
-    $stmt->bindParam(":date_fin", $date_fin);
-    $stmt->execute();
-
-    return $stmt->rowCount();
+    $stmt->execute([$date_debut, $date_fin,$id_gite]);
 }
 
 /**
@@ -230,6 +226,30 @@ function check_duplicate_checking($id_gite, $date_debut, $date_fin){
 }
 
 /**
+ * Vérifie si un créneau de nettoyage est prévu pour les dates spécifiées et un gîte spécifique.
+ *
+ * @param int $id_gite Identifiant du gîte
+ * @param string $date_debut Date de début de la réservation
+ * @param string $date_fin Date de fin de la réservation
+ * @return bool True si un créneau de nettoyage est prévu, false sinon
+ */
+function check_cleaning_time($id_gite, $date_debut, $date_fin){
+    $db = new DbConnect();
+    $conn = $db->connect();
+
+    $stmt = $conn->prepare("SELECT * FROM cleaning_time WHERE id_gite = :id_gite AND ((date_debut BETWEEN :date_debut AND :date_fin) OR (date_fin BETWEEN :date_debut AND :date_fin) OR (:date_debut BETWEEN date_debut AND date_fin) OR (:date_fin BETWEEN date_debut AND date_fin))");
+    $stmt->bindParam(":id_gite", $id_gite);
+    $stmt->bindParam(":date_debut", $date_debut);
+    $stmt->bindParam(":date_fin", $date_fin);
+    $stmt->execute();
+
+    return $stmt->rowCount() == 0;
+}
+
+
+
+
+/**
  * Supprime un blocage de jour pour une réservation de la base de données.
  *
  * @param string $date_debut Date de début du blocage
@@ -244,6 +264,25 @@ function remove_lock_day_reservation($date_debut, $date_fin){
     $stmt->bindParam(':date_debut', $date_debut);
     $stmt->bindParam(':date_fin', $date_fin);
     $stmt->execute();
+}
+
+/**
+ * Vérifie si une réservation est verrouillée pour les dates spécifiées.
+ *
+ * @param string $date_debut Date de début du verrouillage
+ * @param string $date_fin Date de fin du verrouillage
+ * @return bool True si la réservation est verrouillée, false sinon
+ */
+function check_lock_reservation($date_debut, $date_fin) {
+    $db = new DbConnect();
+    $conn = $db->connect();
+
+    $stmt = $conn->prepare("SELECT * FROM reservations WHERE (date_debut <= :date_fin AND date_fin >= :date_debut)");
+    $stmt->bindParam(":date_debut", $date_debut);
+    $stmt->bindParam(":date_fin", $date_fin);
+    $stmt->execute();
+
+    return $stmt->rowCount() > 0;
 }
 
 
