@@ -7,7 +7,8 @@ $pageActive = "acceuil";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maison d'hôte</title>
+
+    <title>Le Gite du marais</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -16,10 +17,9 @@ $pageActive = "acceuil";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
 
     <!-- Custom CSS -->
-    <link href="/view/css/style_index.css" rel="stylesheet">
+    <link rel="stylesheet" href="/view/css/style_index.css" >
     <link rel="stylesheet" href="/view/css/style_header.css">
     <link rel="stylesheet" href="/view/css/style_footer.css">
-
 </head>
 <body>
 <?php include('view/include/header.view.php');?>
@@ -87,11 +87,12 @@ $pageActive = "acceuil";
     </div>
 </div>
 
+
 <!-- Owner Presentation Section -->
 <div class="owner-presentation">
     <div class="container">
         <div class="row align-items-center justify-content-center">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-md-6 text-center">
                 <div class="svg-container">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs>
@@ -99,11 +100,10 @@ $pageActive = "acceuil";
                                 <image x="0" y="0" xlink:href="owner.jpg" height="200" width="200" />
                             </pattern>
                         </defs>
-                        <path fill="url(#image)" d="M58.9,-53.9C73.8,-44,81.7,-22,80.2,-1.4C78.8,19.1,68.1,38.2,53.1,53C38.2,67.7,19.1,78.1,1.4,76.8C-16.3,75.4,-32.7,62.2,-45.9,47.5C-59.2,32.7,-69.3,16.3,-69.9,-0.5C-70.4,-17.4,-61.3,-34.7,-48,-44.7C-34.7,-54.6,-17.4,-57,2.3,-59.3C22,-61.6,44,-63.8,58.9,-53.9Z" transform="translate(100 100)" />
-                    </svg>
+                        <path fill="url(#image)" d="M58.9,-53.9C73.8,-44,81.7,-22,80.2,-1.4C78.8,19.1,68.1,38.2,53.1,53C38.2,67.7,19.1,78.1,1.4,76.8C-16.3,75.4,-32.7,62.2,-45.9,47.5C-59.2,32.7,-69.3,16.3,-69.9,-0.5C-70.4,-17.4,-61.3,-34.7,-48,-44.7C-34.7,-54.6,-17.4,-57,2.3,-59.3C22,-61.6,44,-63.8,58.9,-53.9Z" transform="translate(100 100)" />                    </svg>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-md-6">
                 <div class="presentation-text">
                     <h2>Présentation</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec orci eget nisl convallis venenatis. Integer malesuada lorem sem, eu interdum dolor interdum non. Maecenas at nisl tincidunt, tempus quam sed, vestibulum mi.</p>
@@ -112,7 +112,6 @@ $pageActive = "acceuil";
         </div>
     </div>
 </div>
-
 
 <!-- Separator Section -->
 <section class="separator-section">
@@ -126,8 +125,10 @@ $pageActive = "acceuil";
 <section class="gite-section">
     <h2>Découvrez nos gîtes</h2> <!-- Titre de la section -->
 
-    <div>
-        <p class="gite-describ">Bienvenue aux Gîtes du Marais, votre escapade conviviale et chaleureuse au cœur de la nature. Nos gîtes, accessibles aux personnes à mobilité réduite, offrent une parfaite déconnexion du quotidien. Rejoignez-nous pour une expérience authentique, où le confort rencontre la simplicité pour une véritable pause hors du temps</p>
+    <div class="describ">
+        <p class="gite-describ" id="a">
+            Bienvenue aux Gîtes du Marais <span class="gite-describ-more">, votre escapade conviviale et chaleureuse au cœur de la nature. Nos gîtes, accessibles aux personnes à mobilité réduite, offrent une parfaite déconnexion du quotidien. Rejoignez-nous pour une expérience authentique, où le confort rencontre la simplicité pour une véritable pause hors du temps</span>
+        </p>
     </div>
     <div class="gites-row">
 
@@ -256,27 +257,13 @@ $pageActive = "acceuil";
 <section class="testimonial-section">
     <div class="container">
         <div class="testimonial-carousel">
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
-            <?php include('comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
+            <?php include('view/include/comment.php'); ?>
         </div>
     </div>
 </section>
@@ -285,7 +272,7 @@ $pageActive = "acceuil";
 
 
 <!-- Bootstrap JS and jQuery -->
-<script src="/src/app/app.js"></script>
+<script src="/app/app.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

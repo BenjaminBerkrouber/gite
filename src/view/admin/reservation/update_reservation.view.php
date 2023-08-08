@@ -24,6 +24,7 @@
     <h1>Mettre à jour la réservation</h1>
     <hr>
     <form action="/admin/reservation/update" method="POST">
+        <input type="hidden" name="old_date_fin" value="<?= $reservation['date_fin'] ?>">
         <input type="hidden" name="id_reservation" value="<?= $reservation['id_reservation'] ?>">
         <input type="hidden" name="id_gite" value="<?= $reservation['id_gite'] ?>">
         <input type="hidden" name="id_user" value="<?= $reservation['id_user'] ?>">

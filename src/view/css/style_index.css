@@ -6,8 +6,6 @@
 /*#B36A5E*/
 
 
-
-
 .carousel-item {
     height: 65vh;
     min-height: 300px;
@@ -39,12 +37,14 @@
 .reservation-form {
     position: absolute;
     z-index: 100;
-    width: 1200px;
+    width: 100%;
     padding: 20px;
-    margin-top: -80px;
     background-color: #EED7C5;
     left: 50%;
     transform: translateX(-50%);
+    max-width: 1200px;
+    margin: auto;
+    margin-top: -80px;
 }
 
 .reservation-form .form-row {
@@ -71,35 +71,57 @@
     color: #C89F9C;
 }
 
-/*--------------------------------------------------------------*/
+/* Extra Petit Écran (moins de 576px) */
+@media (max-width: 575.98px) {
+    .reservation-form {
+        max-width: 300px; /* Ajuster selon vos besoins */
+    }
+}
 
+/* Petit Écran (576px et plus) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .reservation-form {
+        max-width: 540px; /* Ajuster selon vos besoins */
+    }
+}
+
+/* Écran Moyen (768px et plus) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .reservation-form {
+        max-width: 720px; /* Ajuster selon vos besoins */
+    }
+}
+
+/* Grand Écran (992px et plus) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .reservation-form {
+        max-width: 960px; /* Ajuster selon vos besoins */
+    }
+}
+
+/* Écran Extra Large (1200px et plus) */
+@media (min-width: 1200px) {
+    .reservation-form {
+        max-width: 1200px; /* Largeur maximale pour les écrans plus grands */
+    }
+}
+
+/*--------------------------------------------------------------*/
+/* Style pour tous les écrans */
 .owner-presentation {
     background-color: #EEE2DF;
     position: relative;
     height: fit-content;
     padding: 100px 0px 75px 0px;
-}
-
-.owner-presentation .container {
-    display: flex;
-    justify-content: center;
-}
-
-.owner-presentation .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.owner-presentation .col-lg-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
+    text-align: justify;
+    color: #CA7C5C;
 }
 
 .owner-presentation .svg-container {
-    width: 500px;
+    width: 100%;
+    max-width: 500px; /* taille maximale pour la forme */
     height: 500px;
+    margin: 0 auto;
 }
 
 .owner-presentation svg {
@@ -113,6 +135,66 @@
     padding: 40px;
     border-radius: 50px 15px 50px 15px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 640px) {
+    .owner-presentation .row {
+        flex-direction: column;
+    }
+    .owner-presentation .svg-container,
+    .owner-presentation .presentation-text {
+        text-align: center;
+        width: 100%;
+    }
+    .owner-presentation .presentation-text {
+        padding: 10px;
+    }
+}
+
+
+
+/* Mobile : 375 x 667 */
+@media (min-width: 361px) and (max-width: 375px) {
+    .owner-presentation .svg-container {
+        width: 220px;
+        height: 220px;
+    }
+    .owner-presentation .presentation-text {
+        padding: 15px;
+    }
+}
+
+/* Mobile : 360 x 720 */
+@media (min-width: 376px) and (max-width: 480px) {
+    .owner-presentation .svg-container {
+        width: 240px;
+        height: 240px;
+    }
+    .owner-presentation .presentation-text {
+        padding: 20px;
+    }
+}
+
+/* Tablette : 768 x 1024 */
+@media (min-width: 481px) and (max-width: 768px) {
+    .owner-presentation .svg-container {
+        width: 300px;
+        height: 300px;
+    }
+    .owner-presentation .presentation-text {
+        padding: 30px;
+    }
+}
+
+/* Ordinateur portable : 1366 x 768 */
+@media (min-width: 769px) and (max-width: 1366px) {
+    .owner-presentation .svg-container {
+        width: 400px;
+        height: 400px;
+    }
+    .owner-presentation .presentation-text {
+        padding: 40px;
+    }
 }
 /*--------------------------------------------------------------*/
 
@@ -198,15 +280,15 @@
 .gite .gite-image {
     position: relative;
     overflow: hidden;
-    height: 400px;
+    height: auto;
 }
 
-.gite .gite-image .carousel-inner {
-    height: 100%;
+.gite .gite-image .carousel-inner,
+.gite .gite-image .carousel-item {
+    height: auto;
 }
 
 .gite .gite-image .carousel-item {
-    height: 100%;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -217,7 +299,7 @@
 .gite .gite-image .carousel-item img {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-position: center;
 }
 
@@ -325,10 +407,58 @@
     100% { transform: translateX(-50%) translateY(0); }
 }
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
+    .gite-section {
+        padding: 50px 20px;
+    }
+
+    .gite {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .gite-section h2 {
+        font-size: 40px;
+    }
+
+    .gite-section p.gite-describ{
+        font-size: 16px;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .gite-section {
+        padding: 30px 15px;
+    }
+
     .gite {
         width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .gite-section h2 {
+        font-size: 30px;
+    }
+
+    .gite-section p.gite-describ{
+        font-size: 14px;
+    }
+
+    .gite .gite-image .arrow-icon {
+        font-size: 20px;
+    }
+
+    .describ {
+        width: 80%;
+    }
+
+    #a {
+        text-align: center;
+    }
+
+    .gite-describ-more{
+        display: none;
     }
 }
 
@@ -449,5 +579,88 @@
     background-color: #C89F9C;
 }
 
+/* Votre CSS existant */
+/* ... */
+
+/* Pour les tablettes en mode paysage et petits ordinateurs portables */
+@media (max-width: 1024px) {
+    #content-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #map-section {
+        width: 100%;
+        height: 50%;
+    }
+
+    #contact-section {
+        width: 100%;
+        height: 50%;
+    }
+
+    #name-fields input[type="text"] {
+        width: 100%;
+    }
+}
+
+/* Pour les tablettes en mode portrait et mobiles de taille moyenne */
+@media (max-width: 768px) {
+    #contact-title {
+        font-size: 30px; /* Taille de police réduite */
+        padding-left: 0.5em; /* Padding réduit */
+    }
+
+    #contact-form {
+        margin: 1em 0.5em; /* Marges réduites */
+    }
+
+    #name-fields {
+        flex-direction: column; /* Les champs du nom sont maintenant l'un sous l'autre */
+    }
+
+    #name-fields input[type="text"],
+    #contact-form input[type="text"],
+    #contact-form input[type="email"],
+    #contact-form textarea {
+        padding: 0.5em; /* Padding réduit */
+    }
+
+    #contact-form textarea {
+        height: 120px; /* Hauteur réduite */
+    }
+
+    #contact-form input[type="submit"] {
+        padding: 8px; /* Padding réduit */
+    }
+}
+
+
+/* Pour les mobiles de petite taille */
+@media (max-width: 575px) {
+    #contact-title {
+        font-size: 30px;
+        padding-left: 0.5em;
+    }
+
+    #contact-form {
+        margin: 0.5em;
+    }
+
+    #name-fields {
+        flex-direction: column;
+    }
+
+    #name-fields input[type="text"] {
+        width: 100%;
+    }
+
+    #contact-form input[type="text"],
+    #contact-form input[type="email"],
+    #contact-form textarea {
+        padding: 0.4em;
+        padding-left: 0.5em;
+    }
+}
 
 /*--------------------------------------------------------------*/

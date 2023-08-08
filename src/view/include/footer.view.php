@@ -14,17 +14,17 @@
             <div class="footer-col">
                 <h4><span>Informations légales</span></h4>
                 <ul>
-                    <li><a href="#">CGV</a></li>
                     <li><a href="#">CGU</a></li>
+                    <li><a href="#">Politique de Protection des données</a></li>
                     <li><a href="#">Politique de Confidentialité</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4><span>Contact</span></h4>
                 <ul>
-                    <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
-                    <li><a href="mailto:info@restaurant.com">info@restaurant.com</a></li>
-                    <li><a href="#">123 Rue Exemple, 75000 Paris</a></li>
+                    <li><a href="tel:+33123456789">+33 6 19 58 86 35</a></li>
+                    <li><a href="mailto:contact@le-gite-du-marais.fr">contact@le-gite-du-marais.fr</a></li>
+                    <li><a href="#">L'Echasserie, Saint-Laurent-sur-Sèvre, 85290</a></li>
                 </ul>
             </div>
             <div class="footer-col">

@@ -75,23 +75,21 @@ function get_reservation_by_id($id_reservation)
  * @param int $nb_personnes Nouveau nombre de personnes pour la réservation
  * @param string $commentaire Nouveau commentaire pour la réservation
  */
-function update_reservation($id_reservation, $id_user, $id_gite, $date_debut, $date_fin, $nb_personnes, $commentaire)
-{
+function update_reservation($id_reservation, $id_user, $id_gite, $date_debut, $date_fin, $nb_personnes, $commentaire) {
     $db = new DbConnect();
     $conn = $db->connect();
 
-    $sql = "UPDATE reservations SET id_user = :id_user, id_gite = :id_gite, date_debut = :date_debut, date_fin = :date_fin, nb_personnes = :nb_personnes, commentaire = :commentaire WHERE id_reservation = :id_reservation";
+    $sql = "UPDATE reservations 
+            SET id_user = ?, 
+                id_gite = ?, 
+                date_debut = ?, 
+                date_fin = ?, 
+                nb_personnes = ?, 
+                commentaire = ? 
+            WHERE id_reservation = ?";
     $stmt = $conn->prepare($sql);
-
-    $stmt->bindParam(':id_user', $id_user);
-    $stmt->bindParam(':id_gite', $id_gite);
-    $stmt->bindParam(':date_debut', $date_debut);
-    $stmt->bindParam(':date_fin', $date_fin);
-    $stmt->bindParam(':nb_personnes', $nb_personnes);
-    $stmt->bindParam(':id_reservation', $id_reservation);
-    $stmt->bindParam(':commentaire', $commentaire);
-
-    $stmt->execute();
+    $values = [$id_user, $id_gite, $date_debut, $date_fin, $nb_personnes, $commentaire, $id_reservation];
+    $stmt->execute($values);
 }
 
 /**
@@ -158,6 +156,7 @@ function get_all_cleaning_time(){
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 /**
  * Ajoute un blocage de jour pour une réservation à la base de données.
@@ -246,9 +245,6 @@ function check_cleaning_time($id_gite, $date_debut, $date_fin){
     return $stmt->rowCount() == 0;
 }
 
-
-
-
 /**
  * Supprime un blocage de jour pour une réservation de la base de données.
  *
@@ -283,6 +279,29 @@ function check_lock_reservation($date_debut, $date_fin) {
     $stmt->execute();
 
     return $stmt->rowCount() > 0;
+}
+
+/**
+ * Supprime l'enregistrement de nettoyage de la base de données correspondant à la date de début et à l'ID du gîte donnés.
+ *
+ * @param string $date_debut La date de début de la réservation
+ * @param int $id_gite L'ID du gîte
+ * @return void
+ */
+function delete_cleaning_time($date_debut, $id_gite){
+    $db = new DbConnect();
+    $conn = $db->connect();
+
+    $timestamp = strtotime($date_debut);
+    $timestamp += 10 * 60; // Le même délai que dans la fonction add_cleaning_time
+    $date_debut = date('Y-m-d H:i:s', $timestamp);
+
+    $sql = "DELETE FROM cleaning_time WHERE date_debut = :date_debut AND id_gite = :id_gite";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':date_debut', $date_debut, PDO::PARAM_STR);
+    $stmt->bindParam(':id_gite', $id_gite, PDO::PARAM_INT);
+
+    $stmt->execute();
 }
 
 

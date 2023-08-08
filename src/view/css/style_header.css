@@ -5,9 +5,6 @@ body {
     background-color: #EEE2DF;
 }
 
-/*--------------------------------------------------------------*/
-
-
 .navbar {
     background-color: #EED7C5;
 }
@@ -47,7 +44,6 @@ body {
     transform: scaleX(1);
 }
 
-
 .btn-success {
     background-color: #CA7C5C;
     border-color: #CA7C5C;
@@ -77,8 +73,13 @@ body {
     .navbar-toggler {
         margin-top: 10px;
     }
+
+    .nav-link {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 20px;
+    }
 }
-
-
-
-/*--------------------------------------------------------------*/

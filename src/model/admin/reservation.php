@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/view/admin/css/style_admin_gite.css">
-
     <style>
         #calendar {
             max-width: 90%;
@@ -30,7 +29,6 @@
     </style>
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.js'></script>
     <script src="/app/admin/reservation/app_calendar.js"></script>
     <script>
         var lockTime = <?php echo json_encode($lock_time); ?>;
