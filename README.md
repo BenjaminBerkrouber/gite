@@ -1,6 +1,4 @@
-Bien sûr, voici un exemple de README pour votre projet de gestion de gîtes et de réservations en PHP :
 
----
 
 # GiteManagement
 
