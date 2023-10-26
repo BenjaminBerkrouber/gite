@@ -40,7 +40,7 @@ GiteManagement est une application web développée en PHP pour la gestion des g
 
 3. Démarrez le serveur de développement
     ```bash
-    php -S localhost:8000
+    php -S localhost:8000 rooter.php
     ```
 
 ## Utilisation
